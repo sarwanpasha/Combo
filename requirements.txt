@@ -1,0 +1,11 @@
+torch==2.5.1
+torch_geometric
+cell-gears==0.1.2
+scanpy
+anndata
+numpy<2
+pandas
+scipy
+scikit-learn
+matplotlib
+xxhash

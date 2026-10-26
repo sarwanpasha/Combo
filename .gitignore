@@ -1,0 +1,15 @@
+venv/
+tmp/
+data/
+data_wessels/
+data_wessels_gears/
+logs/
+*.npz
+*.npy
+*.tsv
+*.json
+*.log
+*.txt
+!requirements.txt
+__pycache__/
+activate.sh
