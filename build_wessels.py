@@ -3,6 +3,11 @@ import os, scanpy as sc, numpy as np
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 a = sc.read_h5ad("data_wessels/WesselsSatija2023.h5ad")
 print("raw:", a.shape)
+# The matrix also stores transgene, guide-array and reporter features after the endogenous genes (starting at eGFP);
+# keep only endogenous genes so that guide counts cannot enter the expression profiles.
+a = a[:, :list(a.var.index).index("eGFP")].copy()
+assert not any(":" in g for g in a.var.index)
+print("endogenous genes:", a.shape)
 a.layers["counts"] = a.X.copy()
 sc.pp.normalize_total(a, target_sum=1e4); sc.pp.log1p(a)
 sc.pp.highly_variable_genes(a, n_top_genes=5000, flavor="seurat")
